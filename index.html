@@ -4,224 +4,131 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="青创线上三个项目的进展总结：深源青创小程序、深源味道、觉知深源。">
 <title>青创线上项目总结 · 2026.11</title>
 <style>
   :root{
-    --paper:#F7F4EE;
-    --card:#FFFFFF;
-    --ink:#16211D;
-    --muted:#6C7570;
-    --line:#E4DED3;
-    --jade:#12594A;
-    --jade-soft:#E5F0EB;
-    --clay:#B4763C;
-    --clay-soft:#F8EDDC;
-    --sky:#3E567F;
-    --sky-soft:#E7EDF6;
+    --paper:#F7F4EE; --card:#FFFFFF; --ink:#16211D; --muted:#6C7570; --line:#E4DED3;
+    --jade:#12594A; --clay:#B4763C;
     --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
     --serif:"Songti SC","STSong","Noto Serif SC",SimSun,serif;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:78px}
-  body{
-    margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-    font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased;
-  }
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+       font-size:16px;line-height:1.85;-webkit-font-smoothing:antialiased}
   .wrap{width:min(1080px,calc(100% - 48px));margin:0 auto}
 
-  /* ---------- 顶栏 ---------- */
-  .bar{
-    position:fixed;top:0;left:0;right:0;z-index:50;
-    background:rgba(247,244,238,.84);backdrop-filter:saturate(180%) blur(14px);
-    border-bottom:1px solid var(--line);
-    transform:translateY(-100%);transition:transform .4s cubic-bezier(.2,.7,.3,1);
-  }
+  /* 顶栏 */
+  .bar{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(247,244,238,.84);
+       backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line);
+       transform:translateY(-100%);transition:transform .4s cubic-bezier(.2,.7,.3,1)}
   .bar.show{transform:none}
   .bar .wrap{display:flex;align-items:center;gap:24px;height:58px}
-  .bar .brand{font-family:var(--serif);font-size:15px;letter-spacing:.04em;margin-right:auto;color:var(--ink)}
+  .bar .brand{font-family:var(--serif);font-size:15px;letter-spacing:.04em;margin-right:auto}
   .bar nav{display:flex;gap:22px}
-  .bar a{color:var(--muted);text-decoration:none;font-size:13.5px;letter-spacing:.02em;position:relative;padding:2px 0}
+  .bar a{color:var(--muted);text-decoration:none;font-size:13.5px;position:relative;padding:2px 0}
   .bar a:hover{color:var(--ink)}
   .bar a::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1px;background:var(--jade);transition:right .3s}
   .bar a:hover::after{right:0}
-  .bar button{
-    font:inherit;font-size:12.5px;color:var(--muted);background:none;border:1px solid var(--line);
-    border-radius:999px;padding:5px 14px;cursor:pointer;transition:.25s;
-  }
+  .bar button{font:inherit;font-size:12.5px;color:var(--muted);background:none;border:1px solid var(--line);
+              border-radius:999px;padding:5px 14px;cursor:pointer;transition:.25s}
   .bar button:hover{border-color:var(--jade);color:var(--jade)}
 
-  /* ---------- Hero ---------- */
-  .hero{
-    position:relative;overflow:hidden;color:#F3F1E9;
-    background:
-      radial-gradient(900px 420px at 82% -8%,rgba(30,120,96,.42),transparent 62%),
-      radial-gradient(600px 380px at 6% 112%,rgba(180,118,60,.26),transparent 60%),
-      #101E1A;
-    padding:98px 0 76px;
-  }
-  .hero::after{
-    content:"";position:absolute;inset:0;pointer-events:none;
+  /* 封面 */
+  .hero{position:relative;overflow:hidden;color:#F3F1E9;
+    background:radial-gradient(900px 420px at 82% -8%,rgba(30,120,96,.42),transparent 62%),
+               radial-gradient(600px 380px at 6% 112%,rgba(180,118,60,.26),transparent 60%),#101E1A;
+    padding:98px 0 74px}
+  .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
     background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
                      linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
-    background-size:64px 64px;mask-image:radial-gradient(72% 62% at 50% 40%,#000 26%,transparent 76%);
-  }
+    background-size:64px 64px;mask-image:radial-gradient(72% 62% at 50% 40%,#000 26%,transparent 76%)}
   .hero .wrap{position:relative;z-index:2}
-  .eyebrow{
-    display:inline-flex;align-items:center;gap:10px;margin:0 0 30px;
-    font-size:12.5px;letter-spacing:.22em;color:#A9C4B8;
-  }
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;margin:0 0 28px;
+           font-size:12.5px;letter-spacing:.22em;color:#A9C4B8}
   .eyebrow::before{content:"";width:34px;height:1px;background:#5C8577}
-  .hero h1{
-    font-family:var(--serif);font-weight:600;letter-spacing:.02em;
-    font-size:clamp(36px,5.4vw,64px);line-height:1.2;margin:0 0 26px;
-  }
-  .hero h1 em{font-style:normal;color:#8FCFB6}
-  .lede{max-width:620px;margin:0;color:#C8D3CC;font-size:clamp(15px,1.6vw,17px);line-height:1.95}
-  .lede b{color:#fff;font-weight:600;box-shadow:inset 0 -8px 0 rgba(143,207,182,.18)}
-  .stats{display:flex;flex-wrap:wrap;gap:14px;margin-top:44px}
-  .stat{
-    display:flex;align-items:baseline;gap:10px;padding:13px 22px;
-    border:1px solid rgba(255,255,255,.14);border-radius:4px;background:rgba(255,255,255,.045);
-  }
-  .stat strong{font-family:var(--serif);font-size:27px;font-weight:600;line-height:1;color:#fff}
-  .stat span{font-size:13px;color:#A9BCB3;letter-spacing:.04em}
+  .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(36px,5.4vw,62px);
+           line-height:1.22;margin:0 0 30px;letter-spacing:.02em}
+  .toc{display:flex;flex-wrap:wrap;gap:10px;margin:0;padding:0;list-style:none}
+  .toc a{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:#D6E0DA;
+         border:1px solid rgba(255,255,255,.16);border-radius:4px;padding:9px 16px;font-size:14px;
+         background:rgba(255,255,255,.04);transition:.3s}
+  .toc a:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.32)}
+  .toc b{font-family:var(--serif);font-weight:400;color:#8FCFB6;font-size:13px}
 
-  /* ---------- 通用区块 ---------- */
-  section{padding:76px 0}
-  .sec-head{display:flex;align-items:flex-end;gap:18px;margin-bottom:34px;border-bottom:1px solid var(--line);padding-bottom:16px}
-  .sec-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.6vw,28px);margin:0;letter-spacing:.03em}
-  .sec-head p{margin:0 0 4px auto;color:var(--muted);font-size:13.5px}
+  /* 章节 */
+  section{padding:64px 0 0}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:8px;margin-bottom:30px;
+        overflow:hidden;box-shadow:0 1px 2px rgba(22,33,29,.03)}
+  .i-head{display:flex;align-items:flex-start;gap:22px;padding:30px 34px 24px;
+          border-bottom:1px solid var(--line);background:linear-gradient(180deg,#FDFCF9,#FFFFFF)}
+  .i-no{font-family:var(--serif);font-size:40px;line-height:.9;color:#C9AE83;
+        flex:none;padding-top:4px;letter-spacing:.02em}
+  .i-head h2{font-family:var(--serif);font-size:clamp(21px,2.4vw,27px);font-weight:600;
+             margin:0;letter-spacing:.03em;line-height:1.5}
+  .i-sub{margin:6px 0 0;color:var(--clay);font-size:14px;line-height:1.8}
+  .i-body{padding:26px 34px 32px}
 
-  /* ---------- 总览 ---------- */
-  .overview{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--card)}
-  .ov-row{
-    display:grid;grid-template-columns:1.5fr 1.4fr 1.3fr .95fr;gap:16px;align-items:center;
-    padding:20px 24px;border-bottom:1px solid var(--line);
-  }
-  .ov-row:last-child{border-bottom:0}
-  .ov-row.head{padding:12px 24px;background:#F1EDE4;font-size:12px;letter-spacing:.12em;color:var(--muted)}
-  .ov-row .name{font-weight:600;display:flex;align-items:center;gap:10px}
-  .ov-row .name i{font-family:var(--serif);font-style:normal;color:var(--clay);font-size:13px;letter-spacing:.06em}
-  .ov-row .form,.ov-row .stage{color:#3B4642;font-size:14.5px}
-  .pill{
-    display:inline-flex;align-items:center;gap:7px;padding:4px 13px;border-radius:999px;
-    font-size:12.5px;font-weight:600;letter-spacing:.02em;white-space:nowrap;
-  }
-  .pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.85}
-  .pill.live{color:#0E5344;background:var(--jade-soft)}
-  .pill.wait{color:#8A5A18;background:var(--clay-soft)}
-  .pill.design{color:#3B4E73;background:var(--sky-soft)}
+  .lead{margin:0 0 14px;font-size:15px;color:#33403A;line-height:1.95}
+  .lead.block{background:#F6F4EE;border:1px solid #E7E1D5;border-radius:5px;
+              padding:13px 16px;font-size:13.5px;color:#4B534E;line-height:1.9;
+              word-break:break-all;margin-bottom:16px}
+  .lead.block a{color:var(--jade);text-decoration:none;border-bottom:1px solid #BFD6CC}
+  .lead.block a:hover{background:#EAF3EE}
+  .lead + .shots{margin-top:0}
 
-  /* ---------- 项目卡 ---------- */
-  .project{
-    background:var(--card);border:1px solid var(--line);border-radius:8px;
-    margin-bottom:28px;overflow:hidden;
-    box-shadow:0 1px 2px rgba(22,33,29,.03);
-    transition:box-shadow .4s,transform .4s;
-  }
-  .project:hover{box-shadow:0 18px 46px -26px rgba(22,33,29,.3);transform:translateY(-2px)}
-  .p-head{
-    display:flex;align-items:center;gap:20px;padding:26px 32px 22px;border-bottom:1px solid var(--line);
-    background:linear-gradient(180deg,#FDFCF9,#FFFFFF);
-  }
-  .p-no{
-    font-family:var(--serif);font-size:34px;line-height:1;color:#F4F1E9;
-    -webkit-text-stroke:1px #C6BDAD;letter-spacing:.02em;flex:none;
-  }
-  .p-head h3{font-family:var(--serif);font-size:clamp(20px,2.2vw,25px);font-weight:600;margin:0 0 3px;letter-spacing:.03em}
-  .p-head .meta{font-size:13px;color:var(--muted);letter-spacing:.05em}
-  .p-head .pill{margin-left:auto}
+  .shots{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;margin:0 0 30px}
+  .frame{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#F4F2EC;
+         cursor:zoom-in;box-shadow:0 3px 14px -10px rgba(22,33,29,.4)}
+  .frame img{display:block;width:100%;height:auto}
+  .frame.ph{width:198px;height:372px}
+  .frame.ph img{height:100%;object-fit:cover;object-position:top center}
+  .frame.ph.tall{width:186px;height:372px}
+  .frame.qr{width:186px;height:186px;background:#fff;display:flex;align-items:center;justify-content:center;padding:8px}
+  .frame.qr img{width:100%;height:100%;object-fit:contain}
+  .frame.qr.sm{width:140px;height:140px}
+  .frame.wide{width:100%;margin-bottom:30px}
+  .frame:hover img{opacity:.95;transition:opacity .3s}
 
-  .p-body{padding:28px 32px 30px}
-  .p-text{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:start}
-  .desc{margin:0 0 18px;color:#39443F;font-size:15.5px;line-height:2}
-  .sub{font-size:11.5px;letter-spacing:.2em;color:var(--muted);margin:0 0 12px}
-  .feats{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px;padding:0}
-  .feats li{font-size:13px;color:#2C3A34;background:#F2F5F2;border:1px solid #E1E7E2;border-radius:3px;padding:5px 12px}
-  .note{margin:0;padding:14px 16px;border-left:2px solid var(--clay);background:#FBF7F0;font-size:13.5px;color:#5A4B39;line-height:1.85;border-radius:0 3px 3px 0}
-  .note.green{border-left-color:var(--jade);background:#F1F7F4;color:#3B5148}
+  .feat{margin:0;padding:15px 18px;border-left:2px solid var(--jade);background:#F1F7F4;
+        border-radius:0 4px 4px 0;font-size:15px;line-height:1.95;color:#2C3A34}
+  .feat b{font-weight:600;color:var(--jade)}
 
-  /* ---------- 截图 ---------- */
-  .gallery{display:grid;grid-template-columns:208px 1fr;gap:16px;margin-top:28px;align-items:start}
-  .gallery.single{grid-template-columns:1fr}
-  figure{margin:0;min-width:0}
-  .shot{
-    position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#F4F2EC;
-    cursor:zoom-in;box-shadow:0 3px 14px -10px rgba(22,33,29,.4);
-  }
-  .shot img{display:block;width:100%;height:auto}
-  .shot.phone{height:368px}
-  .shot.phone img{height:100%;object-fit:cover;object-position:top center}
-  .shot:hover img{opacity:.94;transition:opacity .3s}
-  figcaption{margin-top:9px;font-size:12px;color:var(--muted);letter-spacing:.04em}
-
-  /* ---------- 下一步 ---------- */
-  .next{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-  .step{display:flex;gap:20px;padding:24px 30px;border-bottom:1px solid var(--line)}
-  .step:last-child{border-bottom:0}
-  .step .k{
-    font-family:var(--serif);font-size:15px;color:var(--jade);flex:none;
-    width:26px;height:26px;border:1px solid #BFD6CC;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;margin-top:3px;
-  }
-  .step h4{margin:0 0 4px;font-size:15.5px;font-weight:600}
-  .step p{margin:0;color:var(--muted);font-size:14px;line-height:1.85}
-
-  /* ---------- 页脚 ---------- */
-  footer{border-top:1px solid var(--line);padding:38px 0 54px;margin-top:20px;color:var(--muted);font-size:12.5px}
-  footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
-  footer .sig{font-family:var(--serif);color:var(--ink);font-size:14px;letter-spacing:.06em;margin-bottom:4px}
-
-  /* ---------- 灯箱 ---------- */
-  .lb{position:fixed;inset:0;z-index:100;background:rgba(12,20,17,.93);display:none;align-items:center;justify-content:center;padding:4vh 4vw;cursor:zoom-out}
+  footer{border-top:1px solid var(--line);margin:34px 0 0;padding:34px 0 56px;
+         color:var(--muted);font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .lb{position:fixed;inset:0;z-index:100;background:rgba(12,20,17,.93);display:none;
+      align-items:center;justify-content:center;padding:4vh 4vw;cursor:zoom-out}
   .lb.on{display:flex}
   .lb img{max-width:100%;max-height:92vh;border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
 
-  /* ---------- 动效 ---------- */
-  .rise{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
-  .rise.in{opacity:1;transform:none}
-
   @media (max-width:860px){
     .wrap{width:calc(100% - 32px)}
-    .hero{padding:76px 0 58px}
-    .p-body{padding:22px 20px 26px}
-    .p-text{grid-template-columns:1fr;gap:22px}
-    .p-head{padding:22px 20px 18px;gap:14px;flex-wrap:wrap}
-    .p-head .pill{margin-left:0;order:3;width:100%}
-    .p-no{font-size:28px}
-    .gallery{grid-template-columns:1fr;gap:14px;margin-top:22px}
-    .shot.phone{height:340px}
-    .ov-row{grid-template-columns:1fr 1fr;gap:10px 14px;padding:18px}
-    .ov-row.head{display:none}
-    .ov-row .name,.ov-row .stage{grid-column:1/-1}
+    .hero{padding:76px 0 56px}
+    .i-head{padding:24px 20px 20px;gap:14px}
+    .i-no{font-size:32px}
+    .i-body{padding:22px 20px 26px}
+    .frame.ph,.frame.ph.tall{width:calc(50% - 7px);height:300px}
+    .frame.qr,.frame.qr.sm{width:calc(50% - 7px);height:150px}
     .bar nav{display:none}
-    section{padding:56px 0}
-    .sec-head p{display:none}
-    .step{padding:20px 18px}
+    section{padding:48px 0 0}
   }
   @media print{
     .bar,.lb{display:none!important}
     body{background:#fff}
     .hero{background:#101E1A!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .project,.next,.overview{break-inside:avoid;box-shadow:none;transform:none!important}
-    .rise{opacity:1!important;transform:none!important}
-    .shot{box-shadow:none}
+    .item{break-inside:avoid;box-shadow:none}
   }
 </style>
-<noscript><style>.rise{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
 <div class="bar" id="bar">
   <div class="wrap">
-    <div class="brand">青创线上项目</div>
+    <div class="brand">青创线上项目总结</div>
     <nav>
-      <a href="#overview">总览</a>
-      <a href="#p1">深源青创</a>
-      <a href="#p2">深源味道</a>
-      <a href="#p3">觉知深源</a>
-      <a href="#next">下一步</a>
+      <a href="#p1">一 · 深源青创小程序</a>
+      <a href="#p2">二 · 深源味道</a>
+      <a href="#p3">三 · 觉知深源</a>
     </nav>
     <button onclick="window.print()">打印 / 存 PDF</button>
   </div>
@@ -229,209 +136,90 @@
 
 <header class="hero">
   <div class="wrap">
-    <p class="eyebrow">项目进展 · 2026.11</p>
-    <h1>青创线上项目<br><em>进展总结</em></h1>
-    <p class="lede">三个线上项目一页看完：<b>一个已上线运行</b>，另外两个分别停在资质与确认环节——路径都已打通，只差临门一步。</p>
-    <div class="stats">
-      <div class="stat"><strong>3</strong><span>个项目</span></div>
-      <div class="stat"><strong>1</strong><span>已上线运行</span></div>
-      <div class="stat"><strong>2</strong><span>推进中</span></div>
-      <div class="stat"><strong>2026.11</strong><span>更新</span></div>
-    </div>
+    <p class="eyebrow">项目总结 · 2026.11</p>
+    <h1>青创线上项目总结</h1>
+    <ul class="toc">
+      <li><a href="#p1"><b>一</b>深源青创小程序</a></li>
+      <li><a href="#p2"><b>二</b>深源味道</a></li>
+      <li><a href="#p3"><b>三</b>觉知深源</a></li>
+    </ul>
   </div>
 </header>
 
-<section id="overview">
+<section>
   <div class="wrap">
-    <div class="sec-head rise">
-      <h2>项目总览</h2>
-      <p>学员社群 · 餐饮门店 · 课程社区</p>
-    </div>
-    <div class="overview rise">
-      <div class="ov-row head"><div>项目</div><div>形态</div><div>当前阶段</div><div>状态</div></div>
-      <div class="ov-row">
-        <div class="name"><i>01</i>深源青创小程序</div>
-        <div class="form">小程序 + 管理后台</div>
-        <div class="stage">已交付，线上使用</div>
-        <div><span class="pill live">运行中</span></div>
-      </div>
-      <div class="ov-row">
-        <div class="name"><i>02</i>深源味道</div>
-        <div class="form">点单小程序 + 管理后台</div>
-        <div class="stage">开发完成，可演示</div>
-        <div><span class="pill wait">待上线</span></div>
-      </div>
-      <div class="ov-row">
-        <div class="name"><i>03</i>觉知深源</div>
-        <div class="form">小程序 + 社区 + 后台</div>
-        <div class="stage">后端原型完成</div>
-        <div><span class="pill design">设计中</span></div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head rise">
-      <h2>三个项目的最新进度</h2>
-      <p>功能范围 · 界面实拍 · 当前卡点</p>
-    </div>
-
-    <article class="project rise" id="p1">
-      <div class="p-head">
-        <div class="p-no">01</div>
-        <div>
-          <h3>深源青创小程序</h3>
-          <div class="meta">小程序 · 管理后台</div>
-        </div>
-        <span class="pill live">已上线运行</span>
+    <article class="item" id="p1">
+      <div class="i-head">
+        <div class="i-no">一</div>
+        <div><h2>深源青创小程序</h2></div>
       </div>
-      <div class="p-body">
-        <div class="p-text">
-          <div>
-            <p class="desc">面向青创学员的社群与活动平台，把「学员信息 — 活动报名 — 内容发布」串成一条线。前端小程序与后台管理系统均已交付，已在日常使用。</p>
-            <p class="note green">状态：运行中。后续按实际使用反馈收集需求，统一排期迭代。</p>
-          </div>
-          <div>
-            <p class="sub">主要功能</p>
-            <ul class="feats">
-              <li>学员信息记录</li>
-              <li>活动报名</li>
-              <li>内容发布与收集</li>
-              <li>活动管理</li>
-              <li>后台用户与权限</li>
-            </ul>
-          </div>
+      <div class="i-body">
+        <p class="lead">前端界面（小程序、二维码）</p>
+        <div class="shots">
+          <div class="frame ph" onclick="zoom(this)"><img src="assets/qc-mini-home.jpg" alt="深源青创小程序"></div>
+          <div class="frame qr" onclick="zoom(this)"><img src="assets/qc-qr.jpg" alt="小程序二维码"></div>
         </div>
-        <div class="gallery">
-          <figure>
-            <div class="shot phone" onclick="zoom(this)"><img src="assets/qc-mini-home.jpg" alt="深源青创小程序首页"></div>
-            <figcaption>小程序首页 · 公告与新鲜事</figcaption>
-          </figure>
-          <figure>
-            <div class="shot" onclick="zoom(this)"><img src="assets/qc-admin.jpg" alt="深源青创后台用户管理"></div>
-            <figcaption>后台 · 用户管理</figcaption>
-          </figure>
+
+        <p class="lead block">后端界面（后台，登陆地址：<a href="https://customer.cnzhizhi.com/qingchuang-back/#/system/employee/list" target="_blank" rel="noopener">https://customer.cnzhizhi.com/qingchuang-back/#/system/employee/list</a><br>帐号：13603050573、13528708720，密码不知，应该在团子号手机中）</p>
+        <div class="shots">
+          <div class="frame wide" onclick="zoom(this)"><img src="assets/qc-admin.jpg" alt="深源青创后台"></div>
         </div>
+
+        <p class="feat"><b>主要功能：</b>学员信息记录、活动报名、发布和收集、活动管理等。</p>
       </div>
     </article>
 
-    <article class="project rise" id="p2">
-      <div class="p-head">
-        <div class="p-no">02</div>
+    <article class="item" id="p2">
+      <div class="i-head">
+        <div class="i-no">二</div>
         <div>
-          <h3>深源味道</h3>
-          <div class="meta">点单小程序 · 管理后台</div>
+          <h2>深源味道</h2>
+          <p class="i-sub">（项目已做好暂未上线，原因：没有食品经营许可证）</p>
         </div>
-        <span class="pill wait">待上线 · 卡在资质</span>
       </div>
-      <div class="p-body">
-        <div class="p-text">
-          <div>
-            <p class="desc">面向餐厅门店的点单与经营管理小程序，前后端功能全部开发完成，测试版可直接演示体验，功能上已具备上线条件。</p>
-            <p class="note">唯一卡点：<b>尚未取得食品经营许可证</b>，平台侧无法提交正式上线。证件到位即可送审发布，无需再改功能。</p>
-          </div>
-          <div>
-            <p class="sub">主要功能</p>
-            <ul class="feats">
-              <li>菜单管理</li>
-              <li>客户管理</li>
-              <li>用户管理</li>
-              <li>餐厅管理</li>
-            </ul>
-          </div>
+      <div class="i-body">
+        <p class="lead">前端界面（测试版小程序、测试二维码，因为未上线扫码后需管理员通过后可访问）</p>
+        <div class="shots">
+          <div class="frame ph tall" onclick="zoom(this)"><img src="assets/wd-mini-home.jpg" alt="深源味道小程序"></div>
+          <div class="frame qr sm" onclick="zoom(this)"><img src="assets/wd-qr.jpg" alt="测试二维码"></div>
         </div>
-        <div class="gallery">
-          <figure>
-            <div class="shot phone" onclick="zoom(this)"><img src="assets/wd-mini-home.jpg" alt="深源味道小程序首页"></div>
-            <figcaption>小程序首页（测试版）</figcaption>
-          </figure>
-          <figure>
-            <div class="shot" onclick="zoom(this)"><img src="assets/wd-admin.jpg" alt="深源味道后台菜单列表"></div>
-            <figcaption>后台 · 菜单列表</figcaption>
-          </figure>
+
+        <p class="lead block">后端界面（后台地址：<a href="https://customer.cnzhizhi.com/qingchuang-diandan/#/goods/goods/list" target="_blank" rel="noopener">https://customer.cnzhizhi.com/qingchuang-diandan/#/goods/goods/list</a><br>帐号：15510727727 密码：12345678）</p>
+        <div class="shots">
+          <div class="frame wide" onclick="zoom(this)"><img src="assets/wd-admin.jpg" alt="深源味道后台"></div>
         </div>
+
+        <p class="feat"><b>主要功能：</b>菜单管理、客户管理、用户管理和餐厅管理等。</p>
       </div>
     </article>
 
-    <article class="project rise" id="p3">
-      <div class="p-head">
-        <div class="p-no">03</div>
+    <article class="item" id="p3">
+      <div class="i-head">
+        <div class="i-no">三</div>
         <div>
-          <h3>觉知深源</h3>
-          <div class="meta">小程序 · 社区树洞 · 管理后台</div>
+          <h2>觉知深源</h2>
+          <p class="i-sub">（设计稿已完成，目前未上线一直在等确认和通知）</p>
         </div>
-        <span class="pill design">设计中 · 等确认</span>
       </div>
-      <div class="p-body">
-        <div class="p-text">
-          <div>
-            <p class="desc">以导师课程为核心的学习与社区平台。后端原型已经完成定稿，前端小程序与树洞页面尚未出设计稿——设计由青创侧排期，目前在等确认与通知。</p>
-            <p class="note">下一步取决于设计排期：确认后即可进入前端开发，后端原型已可直接对接。</p>
-          </div>
-          <div>
-            <p class="sub">主要功能</p>
-            <ul class="feats">
-              <li>导师课程随时播放</li>
-              <li>课程资料存储</li>
-              <li>学员板块</li>
-              <li>社区树洞</li>
-            </ul>
-          </div>
+      <div class="i-body">
+        <p class="lead">前端小程序、树洞，暂未设计（设计这边青创正在排期，目前在等通知）</p>
+        <p class="lead block">后端原型图已设计好，地址：<a href="http://demo.cnzhizhi.com/%E8%A7%89%E7%9F%A5%E6%B7%B1%E6%BA%90/" target="_blank" rel="noopener">http://demo.cnzhizhi.com/觉知深源/</a></p>
+        <div class="shots">
+          <div class="frame wide" onclick="zoom(this)"><img src="assets/jz-proto.jpg" alt="觉知深源后端原型"></div>
         </div>
-        <div class="gallery single">
-          <figure>
-            <div class="shot" onclick="zoom(this)"><img src="assets/jz-proto.jpg" alt="觉知深源后端原型"></div>
-            <figcaption>后端原型 · 动态详情</figcaption>
-          </figure>
-        </div>
+
+        <p class="feat"><b>主要功能：</b>导师课程可随时播放、储存，学员板块、社区树洞板块等。</p>
       </div>
     </article>
+
+    <footer>
+      <div>知之网络科技</div>
+      <div>更新于 2026-11-23</div>
+    </footer>
+
   </div>
 </section>
-
-<section id="next" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head rise">
-      <h2>下一步</h2>
-      <p>三件事，各有明确前置条件</p>
-    </div>
-    <div class="next rise">
-      <div class="step">
-        <div class="k">1</div>
-        <div>
-          <h4>深源味道 · 跟进食品经营许可证</h4>
-          <p>证件取得后即可提交平台审核上线，产品本身已就绪，随时可发布。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="k">2</div>
-        <div>
-          <h4>觉知深源 · 等设计排期与确认</h4>
-          <p>青创侧设计排期确定并给出通知后，启动前端小程序与树洞页面开发；后端原型已定稿，可直接对接。</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="k">3</div>
-        <div>
-          <h4>深源青创 · 收集反馈，排期迭代</h4>
-          <p>小程序与后台已在线运行，按实际使用中的反馈收集需求，统一排期迭代。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <div>
-      <div class="sig">知之网络科技</div>
-      <div>本页为项目进展摘要，后台入口与账号信息见内部文档，不在公开页面展示。</div>
-    </div>
-    <div>编制：黄煦荔 · 更新于 2026-11-23</div>
-  </div>
-</footer>
 
 <div class="lb" id="lb" onclick="this.classList.remove('on')"><img id="lbimg" src="" alt=""></div>
 
@@ -440,15 +228,8 @@
   var heroH = document.querySelector('.hero').offsetHeight;
   function onScroll(){ bar.classList.toggle('show', window.scrollY > heroH - 80); }
   window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:.1});
-  document.querySelectorAll('.rise').forEach(function(el){ io.observe(el); });
-
   function zoom(el){
-    var img = el.querySelector('img');
-    document.getElementById('lbimg').src = img.src;
+    document.getElementById('lbimg').src = el.querySelector('img').src;
     document.getElementById('lb').classList.add('on');
   }
   document.addEventListener('keydown', function(e){
